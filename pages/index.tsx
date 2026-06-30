@@ -1,66 +1,49 @@
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
+import { supabase } from '../lib/supabaseClient'
 
 export default function Home() {
-  const categories = [
-    { name: 'Hotels', icon: '🏨' }, { name: 'Medical', icon: '🏥' },
-    { name: 'Auto/Taxi', icon: '🚖' }, { name: 'Jobs', icon: '💼' },
-    { name: 'Real Estate', icon: '🏠' }, { name: 'Marketplace', icon: '🛒' }
-  ];
-
   return (
-    <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
+    <div className="min-h-screen bg-gray-50 font-sans">
       <Head>
         <title>MAHA-BUSINESS-HUB | महाराष्ट्राचे डिजिटल मार्केटप्लेस</title>
+        <script src="https://cdn.tailwindcss.com"></script>
       </Head>
 
-      {/* Header */}
-      <header className="bg-blue-700 text-white p-4 shadow-lg sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold tracking-tight">MAHA-BUSINESS-HUB</h1>
-          <button className="bg-orange-500 px-4 py-2 rounded-full font-semibold hover:bg-orange-600 transition">Register Business</button>
+      {/* Modern Header */}
+      <header className="bg-blue-800 text-white p-4 shadow-xl sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <h1 className="text-2xl font-black italic tracking-tighter">MAHA-BUSINESS-HUB</h1>
+          <button className="bg-orange-500 px-6 py-2 rounded-full font-bold shadow-lg hover:bg-orange-600 transition">नोंदणी करा</button>
         </div>
       </header>
 
-      {/* Hero & Search */}
-      <section className="bg-blue-600 py-16 px-4 text-center text-white">
-        <h2 className="text-4xl font-extrabold mb-6">महाराष्ट्रातील प्रत्येक व्यवसाय आता ऑनलाईन!</h2>
-        <div className="max-w-2xl mx-auto flex shadow-2xl rounded-lg overflow-hidden">
-          <input type="text" placeholder="व्यवसाय किंवा सेवा शोधा... (उदा. हॉटेल, डॉक्टर)" className="w-full p-4 text-gray-800 outline-none" />
-          <button className="bg-orange-500 px-8 font-bold hover:bg-orange-600">Search</button>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-blue-700 to-blue-900 py-20 text-center text-white px-4">
+        <h2 className="text-4xl md:text-6xl font-extrabold mb-6">महाराष्ट्राचा आपला डिजिटल प्लॅटफॉर्म!</h2>
+        <p className="text-xl mb-10 opacity-90 font-medium">बिझनेस डिरेक्टरी • मार्केटप्लेस • नोकरी • प्रॉपर्टी</p>
+        <div className="max-w-2xl mx-auto bg-white rounded-2xl p-2 flex shadow-2xl overflow-hidden">
+          <input type="text" placeholder="हॉटेल, डॉक्टर किंवा सेवा शोधा..." className="w-full p-4 text-gray-800 outline-none text-lg" />
+          <button className="bg-orange-500 px-10 rounded-xl font-bold text-lg hover:bg-orange-600 transition">शोध घ्या</button>
         </div>
       </section>
 
       {/* Categories Grid */}
-      <main className="max-w-6xl mx-auto py-12 px-4">
-        <h3 className="text-2xl font-bold mb-8 border-b-2 border-orange-500 inline-block">प्रमुख विभाग (Categories)</h3>
+      <main className="max-w-7xl mx-auto py-16 px-4">
+        <h3 className="text-3xl font-bold mb-10 text-gray-800 border-l-8 border-orange-500 pl-4">प्रमुख विभाग</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-          {categories.map((cat) => (
-            <div key={cat.name} className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all cursor-pointer text-center group border border-gray-100">
-              <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">{cat.icon}</div>
-              <p className="font-bold text-gray-700">{cat.name}</p>
+          {['Hotels', 'Medical', 'Auto/Taxi', 'Jobs', 'Marketplace', 'Real Estate'].map((item) => (
+            <div key={item} className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 text-center hover:shadow-2xl hover:-translate-y-2 transition-all cursor-pointer group">
+              <div className="text-4xl mb-4 group-hover:scale-125 transition-transform">📁</div>
+              <p className="font-bold text-gray-700">{item}</p>
             </div>
           ))}
         </div>
-
-        {/* Feature Sections */}
-        <div className="mt-16 grid md:grid-cols-2 gap-8">
-          <div className="bg-gradient-to-r from-orange-400 to-orange-600 p-8 rounded-2xl text-white">
-            <h4 className="text-2xl font-bold mb-2">Marketplace</h4>
-            <p className="mb-4 opacity-90">तुमची उत्पादने थेट हजारो ग्राहकांना विका.</p>
-            <button className="bg-white text-orange-600 px-6 py-2 rounded-lg font-bold">Explore Store</button>
-          </div>
-          <div className="bg-gradient-to-r from-blue-500 to-blue-700 p-8 rounded-2xl text-white">
-            <h4 className="text-2xl font-bold mb-2">QR Ecosystem</h4>
-            <p className="mb-4 opacity-90">दुकानासाठी हाय-टेक स्मार्ट QR कोड मिळवा.</p>
-            <button className="bg-white text-blue-700 px-6 py-2 rounded-lg font-bold">Get My QR</button>
-          </div>
-        </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-800 text-gray-400 py-10 px-4 text-center mt-20">
-        <p className="mb-2">© 2026 MAHA-BUSINESS-HUB. All Rights Reserved.</p>
-        <p className="text-sm">Made for local businesses of Maharashtra.</p>
+      <footer className="bg-gray-900 text-gray-400 py-10 text-center border-t border-gray-800">
+        <p className="text-lg font-medium text-white mb-2">MAHA-BUSINESS-HUB</p>
+        <p>© 2026 सर्व हक्क राखीव. Made with ❤️ for Maharashtra.</p>
       </footer>
     </div>
   )
