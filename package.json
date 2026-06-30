@@ -14,14 +14,7 @@
     "framer-motion": "latest",
     "lucide-react": "latest",
     "clsx": "latest",
-    "tailwind-merge": "latest"
-  },
-  "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
-    "@types/node": "latest",
-    "tailwindcss": "latest",
-    "postcss": "latest",
-    "autoprefixer": "latest"
+    "tailwind-merge": "latest",
+    "@supabase/supabase-js": "latest"
   }
 }
