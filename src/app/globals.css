@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-teal: #008080;
+  --deep-blue: #1E3A8A;
+  --peacock-gold: #D4AF37;
+  --royal-purple: #6B21A8;
+}
+
+body {
+  background-color: #021526;
+  color: white;
+}
